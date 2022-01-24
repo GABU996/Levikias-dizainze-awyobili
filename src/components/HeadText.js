@@ -32,11 +32,17 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "bold",
+    fontFamily: "pirveli",
   },
 
   imageStyle: {
     width: 26,
     height: 26,
   },
-  nameTextStyle: { color: "#DEF86F", fontSize: 20, fontWeight: "bold" },
+  nameTextStyle: {
+    color: "#DEF86F",
+    fontSize: 20,
+    fontWeight: "bold",
+    fontFamily: "pirveli",
+  },
 });

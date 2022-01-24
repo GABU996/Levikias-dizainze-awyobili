@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import Swipeable from "react-native-gesture-handler/Swipeable";
 
-const transferer1 = "Blatata";
+const transferer1 = "James";
 
 const Transactions = () => {
   const swipeRight = () => {
@@ -105,7 +105,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 20,
     fontWeight: "700",
-    paddingLeft: 18,
+    paddingLeft: 22,
+    fontFamily: "pirveli",
+    paddingBottom: 20,
   },
 
   transactionStories: {
@@ -134,6 +136,7 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 17,
     fontWeight: "700",
+    fontFamily: "pirveli",
   },
 
   date: {

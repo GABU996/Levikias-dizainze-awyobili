@@ -16,7 +16,7 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <View style={styles.head}></View>
 
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <HeadText />
         <View style={styles.mainCardContainer}>
           <MainCardInfo />

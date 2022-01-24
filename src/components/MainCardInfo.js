@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View, Image, Dimensions } from "react-native";
 
-let ballance = 60.488;
+const ballance = 190.22;
 
 const width = Dimensions.get("screen").width;
 
@@ -31,7 +31,7 @@ const MainCardInfo = () => {
         <View style={styles.container}>
           <View style={styles.leftSide}>
             <View>
-              <Text> Total Balance</Text>
+              <Text style={{ fontFamily: "Mesame" }}> Total Balance</Text>
             </View>
             <View style={styles.amountStyle}>
               <Text style={styles.amountSing}>$</Text>
@@ -81,5 +81,6 @@ const styles = StyleSheet.create({
   },
   picker: {
     marginTop: 55,
+    height: 30,
   },
 });

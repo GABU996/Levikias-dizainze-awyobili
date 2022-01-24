@@ -1,16 +1,89 @@
-import React from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
+import React, { useRef, useState } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  Dimensions,
+} from "react-native";
 
+const DATA = [
+  {
+    cardNumber: "****8898",
+    amount: "50 288",
+    cardImage: require("../../assets/cardOne.png"),
+    visaImage: require("../../assets/visa.png"),
+    wireLessConnectImage: require("../../assets/Group.png"),
+  },
+  {
+    cardNumber: "****8877",
+    amount: "20 288",
+    cardImage: require("../../assets/cardTwo.png"),
+    visaImage: require("../../assets/visa.png"),
+    wireLessConnectImage: require("../../assets/Group.png"),
+  },
+  {
+    cardNumber: "****8898",
+    amount: "50 288",
+    cardImage: require("../../assets/cardOne.png"),
+    visaImage: require("../../assets/visa.png"),
+  },
+  {
+    cardNumber: "****8898",
+    amount: "50 288",
+    cardImage: require("../../assets/cardOne.png"),
+    visaImage: require("../../assets/visa.png"),
+  },
+  {
+    cardNumber: "****8898",
+    amount: "50 288",
+    cardImage: require("../../assets/cardOne.png"),
+    visaImage: require("../../assets/visa.png"),
+  },
+];
+const { width, height } = Dimensions.get("window");
 const AddedCards = () => {
+  const [xOffset, setXOffset] = useState(0);
+  const scrollRef = useRef(null);
   return (
     <View style={styles.container}>
       <ScrollView
+        ref={scrollRef}
+        onScrollEndDrag={(e) => {
+          console.log(">>>>>>>>>>>>>>", e.nativeEvent.targetContentOffset);
+
+          setXOffset(
+            e.nativeEvent.targetContentOffset.x < 0
+              ? 0
+              : e.nativeEvent.targetContentOffset.x
+          );
+        }}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
-        horizontal
+        horizontal={true}
         style={styles.scrollContainer}
+        decelerationRate={0}
+        scrollEventThrottle={16}
+        disableIntervalMomentum
+        snapToInterval={220}
+        // snapToAlignment={"center"}
       >
-        <Image
+        {DATA.map((item, index) => {
+          return (
+            <View key={index} style={{}}>
+              <Image style={styles.imageStyle} source={item.cardImage} />
+              <Image style={styles.cardInfo} source={item.visaImage} />
+              <Text style={styles.cardInfo1}>{item.cardNumber}</Text>
+              <Text style={styles.cardInfo2}>${item.amount}</Text>
+              <Image
+                source={item.wireLessConnectImage}
+                style={styles.wireLessStyle}
+              />
+            </View>
+          );
+        })}
+        {/* <Image
           style={styles.imageStyle}
           source={require("../../assets/cardOne.png")}
         />
@@ -33,7 +106,36 @@ const AddedCards = () => {
         />
         <Text style={styles.cardInfo4}>****8877</Text>
         <Text style={styles.cardInfo5}>$10 200</Text>
+
+        <Image
+          style={styles.imageStyle}
+          source={require("../../assets/cardTwo.png")}
+        />
+        <Image
+          style={styles.cardInfo3}
+          source={require("../../assets/visa.png")}
+        />
+        <Text style={styles.cardInfo4}>****8877</Text>
+        <Text style={styles.cardInfo5}>$10 200</Text> */}
       </ScrollView>
+      <View
+        style={{ marginTop: 24, alignSelf: "center", flexDirection: "row" }}
+      >
+        {DATA.map((item, index) => {
+          return (
+            <View
+              key={index}
+              style={{
+                height: 6,
+                width: 6,
+                borderRadius: 6,
+                backgroundColor: index * 220 === xOffset ? "#DEF86F" : "grey",
+                marginHorizontal: 6,
+              }}
+            ></View>
+          );
+        })}
+      </View>
     </View>
   );
 };
@@ -41,7 +143,7 @@ const AddedCards = () => {
 export default AddedCards;
 
 const styles = StyleSheet.create({
-  container: { backgroundColor: "#191C24", height: 184, width: "100%" },
+  container: { backgroundColor: "#191C24", paddingVertical: 30, width: "100%" },
 
   scrollContainer: {
     flexDirection: "row",
@@ -52,12 +154,14 @@ const styles = StyleSheet.create({
     width: 212,
     marginHorizontal: 18,
     alignSelf: "center",
+    position: "relative",
+    // marginTop: 20,
   },
 
   cardInfo: {
     position: "absolute",
     bottom: 0,
-    top: 40,
+    top: 15,
     left: 40,
     right: 0,
     alignItems: "center",
@@ -68,7 +172,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "white",
     bottom: 0,
-    top: 120,
+    top: 100,
     left: 40,
     right: 0,
     alignItems: "center",
@@ -78,7 +182,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     color: "white",
     bottom: 0,
-    top: 120,
+    top: 100,
     left: 160,
     right: 0,
     alignItems: "center",
@@ -115,5 +219,12 @@ const styles = StyleSheet.create({
     right: 0,
     alignItems: "center",
     justifyContent: "center",
+  },
+  wireLessStyle: {
+    position: "absolute",
+    top: 15,
+    bottom: 0,
+    left: 200,
+    right: 0,
   },
 });
