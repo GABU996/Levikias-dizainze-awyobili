@@ -5,6 +5,7 @@ const AddedCards = () => {
   return (
     <View style={styles.container}>
       <ScrollView
+        pagingEnabled
         showsHorizontalScrollIndicator={false}
         horizontal
         style={styles.scrollContainer}

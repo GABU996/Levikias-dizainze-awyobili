@@ -38,8 +38,13 @@ const MainCardInfo = () => {
               <Text style={styles.amountSing}>{ballance}</Text>
             </View>
           </View>
-          <View></View>
-          <Text>აქანე კურსის შეცვლა იქნება</Text>
+          <View>
+            <Image
+              style={styles.picker}
+              resizeMode="cover"
+              source={require("../../assets/Grupia.png")}
+            />
+          </View>
         </View>
       </View>
     </View>
@@ -73,5 +78,8 @@ const styles = StyleSheet.create({
   amountSing: {
     fontSize: 24,
     fontWeight: "bold",
+  },
+  picker: {
+    marginTop: 55,
   },
 });
